@@ -1,0 +1,53 @@
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{# Read the documentation for more information #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Listado de turnos {% endblock title %}</title>
+</head>
+<body>
+    {% block body %}
+    <h1 class="text-center">
+        Lista de turnos
+    </h1>
+    <table border="2" class="table">
+        <thead class="text-center">
+            <tr class="text-center">
+                <th>id</th>
+                <th>Número de turno</th>
+                <th>Hora de creación</th>
+                <th>Estado</th>
+                <th>Usuario</th>
+                <th>Usuario Staff</th>
+                <th>OPCION</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            {% for turno in object_list %}
+            <tr>
+                <td>{{ turno.id }}</td>
+                <td>{{ turno.numero_turno }}</td>
+                <td>{{ turno.hora_creacion }}</td>
+                <td>{{ turno.estado }}</td>
+                <td>{{ turno.usuario }}</td>
+                <td>{{ turno.usuario_staff }}</td>
+                <td><a href="{% url 'editar_turno' turno.id %}" class="">EDITAR</a> <a href="{% url 'eliminar_turno' turno.id %}" class="">ELIMINAR</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock body %}
+</body>
+</html>

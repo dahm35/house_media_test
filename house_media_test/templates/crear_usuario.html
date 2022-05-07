@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% block title %} Gestión de usuario {% endblock title %}
+{% block body %}
+<form method="POST" class="form">{% csrf_token %}
+    <!--<label for=""></label>
+    <input type="text" name="nombre">-->
+    {{ form.as_p }}
+    <button type="submit" class="btn">
+        Registrar
+    </button>
+</form>
+{% endblock body %}

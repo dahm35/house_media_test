@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+
+{% block tittle %} Listado de usuarios {% endblock tittle %}
+{% block body %}
+<h1 class="text-center">
+    Listado de usuarios
+</h1>
+<table border="2" class="table">
+    <thead class="text-center">
+        <tr class="text-center">
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Número de celular</th>
+            <th>Número de identificación</th>
+            <th>Staff Status</th>
+            <th>Foto</th>
+            <th>OPCION</th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        {% for usuario in object_list %}
+        <tr>
+            <td>{{ usuario.nombres }}</td>
+            <td>{{ usuario.apellidos }}</td>
+            <td>{{ usuario.celular }}</td>
+            <td>{{ usuario.identificacion }}</td>
+            <td>{{ usuario.is_staff }}</td>
+            <td>{{ usuario.foto }}</td>
+            <td><a href="{% url 'editar_usuario' usuario.identificacion %}" class="">EDITAR</a> <a href="{% url 'eliminar_usuario' usuario.identificacion %}" class="">ELIMINAR</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}
