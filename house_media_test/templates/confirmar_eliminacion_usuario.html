@@ -1,9 +1,8 @@
-{# Load the tag library #}
 {% load bootstrap5 %}
 
-{# Load CSS and JavaScript #}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
+
 <form method="POST">{% csrf_token %}
     <h1 class="text-center">¿Desea Eliminar el usuario {{ object }}?</h1>
     <div class="text-center">

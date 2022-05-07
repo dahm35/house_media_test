@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
-#class User(models.Model):
     identificacion = models.IntegerField('Número de identificación', primary_key=True)
     #Falta username y email
     nombres = models.CharField('Nombres', max_length=50, blank=True, null=True)
@@ -20,4 +19,3 @@ class User(AbstractUser):
     
     def __str__(self):
         return f'{self.nombres} {self.apellidos} - {self.identificacion}'
-        #return str(self.identificacion)

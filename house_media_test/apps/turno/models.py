@@ -13,7 +13,6 @@ class Turno(models.Model):
     id = models.AutoField(primary_key=True)
     numero_turno = models.IntegerField(unique=True)
     hora_creacion = models.TimeField(auto_now_add=True, auto_now=False)
-    #estado = models.CharField(max_length=20, null=True)#Quizás crear una tabla de parámetros
     estado = models.ForeignKey(EstadoTurno, on_delete=models.CASCADE, null=False, blank=True)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='usuario', null=False)
     usuario_staff = models.ForeignKey(User, on_delete=models.CASCADE, related_name='usuario_staff', null=False, blank=True)
