@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apps.turno.views import TurnoList, TurnoCreateView, TurnoUpdateView, TurnoDeleteView, TurnosPendientesView
+from apps.turno.views import TurnoList, TurnoCreateView, TurnoUpdateView, TurnoDeleteView, TurnosPendientesView, TurnosStaff
 from apps.usuario.views import UserList, UserCreateView, UserUpdateView, UserDeleteView, UserAnonymousView
 from apps.turno.TurnosCreados import TurnosCreados
 from apps.usuario.ExistenciaUsuario import ExistenciaUsuario
@@ -25,15 +25,19 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TurnoList.as_view(), name='index'),
-    path('usuarios', UserList.as_view(), name='usuarios'),
-    path('crear_turno', TurnoCreateView.as_view(), name='crear_turno'),
+    
+    path('turnos/', TurnoList.as_view(), name='turnos'),
+    path('crear_turno/', TurnoCreateView.as_view(), name='crear_turno'),
     path('editar_turno/<int:pk>', TurnoUpdateView.as_view(), name='editar_turno'),
     path('eliminar_turno/<int:pk>', TurnoDeleteView.as_view(), name='eliminar_turno'),
-    path('crear_usuario', UserCreateView.as_view(), name='crear_usuario'),
+    path('turnos_pendientes/', TurnosPendientesView.as_view(), name='turnos_pendientes'),
+    path('turnos_staff/', TurnosStaff.as_view(), name='turnos_staff'),
+
+    path('usuarios/', UserList.as_view(), name='usuarios'),
+    path('crear_usuario/', UserCreateView.as_view(), name='crear_usuario'),
     path('editar_usuario/<int:pk>', UserUpdateView.as_view(), name='editar_usuario'),
     path('eliminar_usuario/<int:pk>', UserDeleteView.as_view(), name='eliminar_usuario'),
-    path('turnos_pendientes/', TurnosPendientesView.as_view(), name='turnos_pendientes'),
-    path('usuarios_anonimo', UserAnonymousView.as_view(), name='usuarios_anonimo'),
+    path('usuarios_anonimo/', UserAnonymousView.as_view(), name='usuarios_anonimo'),
     
     path('turnos_creados/', TurnosCreados.as_view(), name='turnos_creados'),
     path('existe_usuario/<int:pk>', ExistenciaUsuario.as_view(), name='existe_usuario'),

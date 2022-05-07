@@ -6,3 +6,9 @@ class TurnoForm(forms.ModelForm):
     class Meta:
         model = Turno
         fields = ('numero_turno','usuario')
+
+class TurnoUpdateForm(forms.ModelForm):
+    
+    class Meta:
+        model = Turno
+        fields = ('numero_turno','usuario', 'estado', 'usuario_staff')

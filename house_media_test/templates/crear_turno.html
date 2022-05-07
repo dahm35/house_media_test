@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'turnos.html' %}
 {% block title %} Gestión de turno {% endblock title %}
 {% block body %}
 <form method="POST">{% csrf_token %}
@@ -7,9 +7,15 @@
     <h1 class="text-center">Gestión de turno</h1>
     <div class="text-center">
         {{ form.as_p }}
-        <button type="submit" class="btn btn-success">
-            Registrar
-        </button>
+        {% if form.instance.numero_turno %}
+            <button type="submit" class="btn btn-success">
+                Actualizar
+            </button>
+        {% else %}
+            <button type="submit" class="btn btn-success">
+                Crear
+            </button>
+        {% endif %}
     </div>
 </form>
 {% endblock body %}
