@@ -5,9 +5,9 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 <form method="POST">{% csrf_token %}
-    <h1 class="text-center">¿Desea Eliminar el turno {{ object }}?</h1>
+    <h1 class="text-center">¿Desea Eliminar el usuario {{ object }}?</h1>
     <div class="text-center">
         <button type="submit" class="btn btn-danger text-center">Confirmar</button>
-        <a href="{% url 'index' %}" class="btn btn-secondary">Cancelar</a>
+        <a href="{% url 'usuarios' %}" class="btn btn-secondary">Cancelar</a>
     </div>
 </form>

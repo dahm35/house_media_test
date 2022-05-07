@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 from django.urls import reverse_lazy
 from .models import Turno, EstadoTurno
@@ -13,6 +13,11 @@ class TurnoCreateView(CreateView):
     form_class = TurnoForm
     template_name = "crear_turno.html"
     success_url = reverse_lazy('index')
+    def form_valid(self, form):
+        estado_pendiente = EstadoTurno.objects.get(nombre='Pendiente')
+        form.instance.estado = estado_pendiente
+        form.instance.usuario_staff = self.request.user
+        return super().form_valid(form)
 
 class TurnoUpdateView(UpdateView):
     model = Turno
@@ -20,7 +25,6 @@ class TurnoUpdateView(UpdateView):
     template_name = "crear_turno.html"
     success_url = reverse_lazy('index')
 
-#@login_required(redirect_field_name='my_redirect_field')
 class TurnoDeleteView(DeleteView):
     model = Turno
     template_name = "confirmar_eliminacion_turno.html"

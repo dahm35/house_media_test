@@ -8,7 +8,7 @@ class User(AbstractUser):
     nombres = models.CharField('Nombres', max_length=50, blank=True, null=True)
     apellidos = models.CharField('Apellidos', max_length=50, blank=True, null=True)
     celular = models.CharField('Número de celular', max_length=15, blank=True, null=True)
-    foto = models.ImageField('Foto', blank=True, upload_to='app/usuario/img/')
+    foto = models.ImageField('Foto', upload_to='fotos', blank=True, null=True)
 
     USERNAME_FIELD = 'identificacion'
     REQUIRED_FIELDS = ['nombres', 'apellidos']

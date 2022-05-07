@@ -4,10 +4,12 @@
 <form method="POST">{% csrf_token %}
     <!--<label for=""></label>
     <input type="text" name="nombre">-->
-    {{form.fields.numero_turno}}
-    {{ form.as_p }}
-    <button type="submit">
-        Registrar
-    </button>
+    <h1 class="text-center">Gestión de turno</h1>
+    <div class="text-center">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">
+            Registrar
+        </button>
+    </div>
 </form>
 {% endblock body %}

@@ -28,3 +28,12 @@ class UserDeleteView(DeleteView):
     model = User
     template_name = "confirmar_eliminacion_usuario.html"
     success_url = reverse_lazy('usuarios')
+
+class UserAnonymousView(ListView):
+    model = User
+    #context_object_name = ''
+    template_name='usuarios.html'
+
+    def get_queryset(self):
+        usuarios_no_staff = self.model.objects.filter(is_staff=False)
+        return usuarios_no_staff

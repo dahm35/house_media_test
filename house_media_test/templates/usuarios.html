@@ -12,9 +12,11 @@
             <th>Apellidos</th>
             <th>Número de celular</th>
             <th>Número de identificación</th>
-            <th>Staff Status</th>
+            <th>Usuario Staff</th>
             <th>Foto</th>
-            <th>OPCION</th>
+            {% if request.user.is_staff %}
+                <th>OPCION</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody class="text-center">
@@ -24,9 +26,29 @@
             <td>{{ usuario.apellidos }}</td>
             <td>{{ usuario.celular }}</td>
             <td>{{ usuario.identificacion }}</td>
-            <td>{{ usuario.is_staff }}</td>
-            <td>{{ usuario.foto }}</td>
-            <td><a href="{% url 'editar_usuario' usuario.identificacion %}" class="">EDITAR</a> <a href="{% url 'eliminar_usuario' usuario.identificacion %}" class="">ELIMINAR</a></td>
+            <td>
+                {% if usuario.is_staff %}
+                    SÍ
+                {% else %}
+                    NO
+                {% endif %}
+            </td>
+            <td>
+                {% if usuario.foto %}
+                    <img src="{{ usuario.foto.url }}" alt="foto_usuario" width="150" length="150">   
+                {% else %}
+                    Sin foto
+                {% endif %}
+            </td>
+            
+            {% if request.user.is_staff %}
+                <td><a href="{% url 'editar_usuario' usuario.identificacion %}" class="">
+                    <button class="btn btn-success">EDITAR</button>
+                </a>
+                <a href="{% url 'eliminar_usuario' usuario.identificacion %}" class="">
+                    <button class="btn btn-danger">ELIMINAR</button>
+                </a></td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>

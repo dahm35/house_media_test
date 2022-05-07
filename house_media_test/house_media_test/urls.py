@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from apps.turno.views import TurnoList, TurnoCreateView, TurnoUpdateView, TurnoDeleteView, TurnosPendientesView
-from apps.usuario.views import UserList, UserCreateView, UserUpdateView, UserDeleteView
+from apps.usuario.views import UserList, UserCreateView, UserUpdateView, UserDeleteView, UserAnonymousView
 from apps.turno.TurnosCreados import TurnosCreados
 from apps.usuario.ExistenciaUsuario import ExistenciaUsuario
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,8 +32,12 @@ urlpatterns = [
     path('crear_usuario', UserCreateView.as_view(), name='crear_usuario'),
     path('editar_usuario/<int:pk>', UserUpdateView.as_view(), name='editar_usuario'),
     path('eliminar_usuario/<int:pk>', UserDeleteView.as_view(), name='eliminar_usuario'),
-    path('turnos_pendientes', TurnosPendientesView.as_view(), name='turnos_pendientes'),
+    path('turnos_pendientes/', TurnosPendientesView.as_view(), name='turnos_pendientes'),
+    path('usuarios_anonimo', UserAnonymousView.as_view(), name='usuarios_anonimo'),
     
-    path('turnos/', TurnosCreados.as_view(), name='turnos_creados'),
+    path('turnos_creados/', TurnosCreados.as_view(), name='turnos_creados'),
     path('existe_usuario/<int:pk>', ExistenciaUsuario.as_view(), name='existe_usuario'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

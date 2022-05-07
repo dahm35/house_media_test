@@ -43,7 +43,12 @@
                 <td>{{ turno.estado }}</td>
                 <td>{{ turno.usuario }}</td>
                 <td>{{ turno.usuario_staff }}</td>
-                <td><a href="{% url 'editar_turno' turno.id %}" class="">EDITAR</a> <a href="{% url 'eliminar_turno' turno.id %}" class="">ELIMINAR</a></td>
+                <td><a href="{% url 'editar_turno' turno.id %}" class="">
+                    <button class="btn btn-success">EDITAR</button>
+                </a>  
+                <a href="{% url 'eliminar_turno' turno.id %}" class="">
+                    <button class="btn btn-danger">ELIMINAR</button>
+                </a></td>
             </tr>
             {% endfor %}
         </tbody>
