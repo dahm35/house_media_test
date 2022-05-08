@@ -13,18 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.contrib import admin
+from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView, LogoutView
 from apps.turno.views import TurnoList, TurnoCreateView, TurnoUpdateView, TurnoDeleteView, TurnosPendientesView, TurnosStaff
 from apps.usuario.views import UserList, UserCreateView, UserUpdateView, UserDeleteView, UserAnonymousView
 from apps.turno.TurnosCreados import TurnosCreados
 from apps.usuario.ExistenciaUsuario import ExistenciaUsuario
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TurnoList.as_view(), name='index'),
+    path('', LoginView.as_view(template_name='index.html'), name = 'login'),
+    path('logout/', LogoutView.as_view(template_name='index.html'), name = 'logout'),
     
     path('turnos/', TurnoList.as_view(), name='turnos'),
     path('crear_turno/', TurnoCreateView.as_view(), name='crear_turno'),

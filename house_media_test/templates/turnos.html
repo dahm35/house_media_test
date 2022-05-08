@@ -44,7 +44,7 @@
                 {% if request.user.is_staff %}
                     <td><a href="{% url 'editar_turno' turno.id %}" class="">
                         <button class="btn btn-success">EDITAR</button>
-                    </a>  
+                    </a>
                     <a href="{% url 'eliminar_turno' turno.id %}" class="">
                         <button class="btn btn-danger">ELIMINAR</button>
                     </a></td>
@@ -54,5 +54,10 @@
         </tbody>
     </table>
     {% endblock body %}
+    {% if request.user.is_authenticated %}
+        <td><a href="{% url 'logout' %}" class="">
+            <button class="btn btn-success">Cerrar sesión</button>
+        </a>
+    {% endif %}
 </body>
 </html>

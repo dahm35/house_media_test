@@ -15,43 +15,30 @@
 </head>
 <body>
     {% block body %}
-    <h1 class="text-center">
-        Lista de turnos
-    </h1>
-    <table border="2" class="table">
-        <thead class="text-center">
-            <tr class="text-center">
-                <th>id</th>
-                <th>Número de turno</th>
-                <th>Hora de creación</th>
-                <th>Estado</th>
-                <th>Usuario</th>
-                <th>Usuario Staff</th>
-                {% if request.user.is_staff %}
-                    <th>OPCION</th>
-                {% endif %}
-            </tr>
-        </thead>
-        <tbody class="text-center">
-            {% for turno in object_list %}
-            <tr>
-                <td>{{ turno.id }}</td>
-                <td>{{ turno.numero_turno }}</td>
-                <td>{{ turno.hora_creacion }}</td>
-                <td>{{ turno.estado }}</td>
-                <td>{{ turno.usuario }}</td>
-                <td>{{ turno.usuario_staff }}</td>
-                {% if request.user.is_staff %}
-                    <td><a href="{% url 'editar_turno' turno.id %}" class="">
-                        <button class="btn btn-success">EDITAR</button>
-                    </a>  
-                    <a href="{% url 'eliminar_turno' turno.id %}" class="">
-                        <button class="btn btn-danger">ELIMINAR</button>
-                    </a></td>
-                {% endif %}
-            </tr>
-            {% endfor %}
-        </tbody>
+    <h2 class="text-center">
+        Autenticación Usuario Staff
+    </h2>
+    <div class="bg-dark">
+        <div class="sufee-login">
+            <div class="container">
+                <div class="login-content">
+                    <div class="login-form">
+                        <form method="POST">{% csrf_token %}
+                            <div class="form-group">
+                                <label>Nombre de usuario</label>
+                                <input type="text" class="form-control" placeholder="Usuario" name="username">
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña</label>
+                                <input type="password" class="form-control" placeholder="Contraseña" name="password">
+                            </div>
+                            <button type="submit" class="btn btn-success btn-flat">Iniciar sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </table>
     {% endblock body %}
 </body>

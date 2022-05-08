@@ -9,7 +9,7 @@ class User(AbstractUser):
     celular = models.CharField('Número de celular', max_length=15, blank=True, null=True)
     foto = models.ImageField('Foto', upload_to='fotos', blank=True, null=True)
 
-    USERNAME_FIELD = 'identificacion'
+    #USERNAME_FIELD = 'identificacion'
     REQUIRED_FIELDS = ['nombres', 'apellidos']
 
     class Meta:
