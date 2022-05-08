@@ -6,7 +6,6 @@ from .forms import UserForm
 
 class UserList(ListView):
     model = User
-    #context_object_name = ''
     template_name='usuarios.html'
     
 class UserCreateView(CreateView):
@@ -36,7 +35,6 @@ class UserDeleteView(DeleteView):
 
 class UserAnonymousView(ListView):
     model = User
-    #context_object_name = ''
     template_name='usuarios.html'
 
     def get_queryset(self):
